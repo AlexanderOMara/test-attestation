@@ -16,8 +16,13 @@ jobs:
           echo 'test-attestation' > build/test-attestation.txt
           date >> build/test-attestation.txt
 
-      - name: Artifact build
+      - name: Artifact
         uses: actions/upload-artifact@v4
         with:
           name: build
           path: build/
+
+      - name: Provenance
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: build/*
