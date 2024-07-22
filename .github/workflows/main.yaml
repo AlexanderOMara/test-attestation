@@ -1,0 +1,23 @@
+name: main
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          mkdir build
+          echo 'test-attestation' > build/test-attestation.txt
+          date >> build/test-attestation.txt
+
+      - name: Artifact build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build/
